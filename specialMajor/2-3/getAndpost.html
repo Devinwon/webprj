@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>getAndpost method</title>
+    <link rel="stylesheet" href="css/semantic.css">
+  </head>
+  <body>
+      <div class="ui two column stackable grid container">
+          <div class="column">
+              <div class="ui green segment">
+                  <h2 class="ui header">
+                       Request-GET
+                  </h2>
+                    <!-- 注意action的值为表单提交到的位置 -->
+                  <form action="http://cn.bing.com/images" class="ui form" method="get">
+                       <div class="field">
+                           <label>Content</label>
+                           <input type="text" name="q" value="">
+                       </div>
+                       <div class="field">
+                           <div class="ui radio checkbox">
+                                <!--查询了ping站点, qft目测是查询过滤器 -->
+                               <input type="radio" name="qft" value="+filterui:color2-color">
+                               <label>彩色</label>
+                           </div>
+                       </div>
+                       <div class="field">
+                           <div class="ui radio checkbox">
+                                <!-- 查询了ping站点 ，qft目测是查询过滤器-->
+                               <input type="radio" name="qft" value="+filterui:color2-bw">
+                               <label>黑白</label>
+                           </div>
+                       </div>
+                       <button class="ui green button" type="submit" >
+                           Submit
+                       </button>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </body>
+</html>

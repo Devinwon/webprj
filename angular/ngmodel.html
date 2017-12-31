@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='notesApp'>
+<head>
+	 <!-- 
+	 <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script> 
+	 <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"> </script>
+	 -->
+	<script src="js/angular.min.js" ></script>
+	<meta charset="UTF-8">
+	<title>Hello angular</title>
+</head>
+<body ng-controller='MainCtrl as ctrl'>
+		{{ctrl.message}} AngularJS
+		<br/>
+		<button ng-click='ctrl.changeMessage()'>Change Message</button>
+		<script  type="text/javascript" >
+				angular.module('notesApp',[])
+						.controller('MainCtrl',[function(){
+							var self=this;
+							self.message="Hello";
+							self.changeMessage=function(){
+								self.message="Goodbye";
+							};
+				}])
+		</script>	
+	
+</body>
+
+</html>

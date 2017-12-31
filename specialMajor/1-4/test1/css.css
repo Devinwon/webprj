@@ -1,0 +1,70 @@
+body{
+	background-color: #eaeaea;
+	}
+
+.mailbox{
+	display: inline-block;
+	background-color: #9cbfcc;
+	width:230px;
+	height:290px;
+	margin-right: 15px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	-ms-border-radius:5px;
+	-o-border-radius:5px;
+	border-radius: 5px;
+
+	}
+
+.gmail{
+	width: 116px;
+	padding-top: 56px;
+	padding-left: 58px;
+	padding-right: 56px;
+	}
+
+.newsbox{
+	display: inline-block;
+	background-color: #6bb790;
+	width:230px;
+	height:290px;
+	margin-right: 15px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	-ms-border-radius:5px;
+	-o-border-radius:5px;
+	border-radius: 5px;
+
+	}
+
+	.news{
+	width: 116px;
+	padding-top: 56px;
+	padding-left: 58px;
+	padding-right: 56px;
+	}
+
+.mapbox{
+	display: inline-block;
+	background-color: #f5b227;
+	width:230px;
+	height:290px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	-ms-border-radius:5px;
+	-o-border-radius:5px;
+	border-radius: 5px;
+
+	}
+
+	.map{
+	width: 116px;
+	padding-top: 56px;
+	padding-left: 58px;
+	padding-right: 56px;
+	}
+
+.mark{
+	color: #ffffff;
+	margin-left: 58px;
+	}

@@ -1,0 +1,120 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="{% static 'css/semantic.css' %}" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="{% static 'css/myinfo.css' %}" media="screen" title="no title">
+        <link href="https://fonts.googleapis.com/css?family=Oswald|Raleway" rel="stylesheet">
+    </head>
+    <body>
+        <div class="ui inverted top fixed menu borderless red menu">
+            <div class="header item">
+                <div class="ui image">
+                    <a href="{% url 'list' %}">
+                        <img src="{% static 'images/tenlogo.png' %}" alt="">
+                    </a>
+                </div>
+            </div>
+            <div class="right menu">
+                {% if request.user.is_authenticated %}
+                    <div class="item">
+                        <h5 class="ui inverted header">
+                            {% if request.user.user.username %}
+                                <a class="ui mini avatar image" href="{% url 'myinfo' request.user.username %}">
+                                    <img src="/upload/{{ request.user.user.avatar }}" alt="" />
+                                </a>
+                                <span href="{% url 'myinfo' request.user.username %}">{{ request.user.user.username }}</span>
+                            {% else %}
+                                <a class="ui mini avatar image" href="{% url 'myinfo' request.user.username %}">
+                                    <img src="{% static 'images/hou180.jpg' %}" alt="" />
+                                </a>
+                                <span href="{% url 'myinfo' request.user.username %}">{{ request.user.username }}</span>
+                            {% endif %}
+                        </h5>
+                    </div>
+                    <div class="item">
+                        <a href="{% url 'logout' %}" class="ui inverted circular button">Logout</a>
+                    </div>
+                {% else %}
+                    <div class="item">
+                        <a href="{% url 'login' %}" class="ui inverted circular button">Signup/Login</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="ui  raised container segments">
+            <div class="ui head basic segment" style="background-image: url({% static 'images/bg.png' %});">
+                <div class="ui circular image cover">
+                    {% if request.user.user.username %}
+                        <img src="/upload/{{ request.user.user.avatar }}" alt="" style="width: 100px;height: 100px;"/>
+                    {% else %}
+                        <img src="{% static 'images/hou180.jpg' %}" alt="" style="width: 100px;height: 100px;"/>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="ui bottom inverted  six item attached menu">
+                <a class="item" href="{% url 'myinfo' user.username %}">
+                    个人资料
+                </a>
+                <div class="active item">
+                    我赞过的
+                </div>
+                <a class="item" href="{% url 'changepwd' user.username %}">
+                    修改密码
+                </a>
+            </div>
+            <div class="ui butt segment">
+                {% if collection_list %}
+                    <div class="ui basic  padded segment container info" style="width:530px;">
+                        {% for collection in collection_list %}
+                            <div class="ui grid">
+                                <div class="five wide column" >
+                                    <img class="ui top aligned tiny image" src="/upload/{{ collection.video.cover }}" style="width:80px;height:55px;">
+                                </div>
+                                <a class="eleven wide column" href="{% url 'detail' collection.video_id %}">
+                                    <h4 style="color: black;">{{ collection.video.title }}</h4>
+                                </a>
+                            </div>
+                            <div class="ui divider"></div>
+                        {% endfor %}
+                    </div>
+                    <div class="ui center aligned very padded vertical segment container">
+                        <div class="ui pagination menu">
+                            {% if collection_list.has_previous %}
+                                <a href="?page={{ collection_list.previous_page_number }}" class="item">
+                                    <i class="icon red left caret"></i>
+                                </a>
+                            {% else %}
+                                <a href="?page={{ collection_list.start_index }}" class="disabled item">
+                                    <i class="icon  left caret"></i>
+                                </a>
+                            {% endif %}
+                            {% for page_number in collection_list.paginator.page_range %}
+                                {% ifequal page_number  collection_list.number %}
+                                    <a href="?page={{ page_number }}" class="active item" style="background-color: red; color:white">
+                                        {{ page_number }}
+                                    </a>
+                                {% else %}
+                                    <a href="?page={{ page_number }}" class=" item">
+                                        {{ page_number }}
+                                    </a>
+                                {% endifequal %}
+                            {% endfor %}
+                            {% if  collection_list.has_next %}
+                                <a href="?page={{ collection_list.next_page_number }}" class=" item">
+                                    <i class="icon red right caret"></i>
+                                </a>
+                            {% else %}
+                                <a href="?page={{ collection_list.paginator.num_pages }}" class="disabled item">
+                                    <i class="icon  right caret"></i>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </body>
+</html>

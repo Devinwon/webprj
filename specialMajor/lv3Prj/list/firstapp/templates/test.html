@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Test Document</title>
+</head>
+<body>
+		<form action=" {% url 'student' %}" method="post" accept-charset="utf-8">
+				{% csrf_token%}
+				<label>姓名</label><input type="text" name="name" value=""><br>
+				<label>地址</label><input type="text" name="address" value=""><br>
+				<label>网址</label><input type="text" name="website" value=""><br>
+				<button class="ui button">Submit</button>
+		</form>
+</body>
+</html>

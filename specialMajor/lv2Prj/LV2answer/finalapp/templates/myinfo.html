@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="{% static 'css/semantic.css' %}" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="{% static 'css/myinfo.css' %}" media="screen" title="no title">
+        <link href="https://fonts.googleapis.com/css?family=Oswald|Raleway" rel="stylesheet">
+    </head>
+    <body>
+        <div class="ui inverted top fixed menu borderless red menu">
+            <div class="header item">
+                <div class="ui image">
+                    <a href="{% url 'list' %}">
+                        <img src="{% static 'images/tenlogo.png' %}" alt="">
+                    </a>
+                </div>
+            </div>
+            <div class="right menu">
+                {% if request.user.is_authenticated %}
+                    <div class="item">
+                        <h5 class="ui inverted header">
+                            {% if request.user.user.username %}
+                                <a class="ui mini avatar image" href="{% url 'myinfo' request.user.username %}">
+                                    <img src="/upload/{{ request.user.user.avatar }}" alt="" />
+                                </a>
+                                <span href="{% url 'myinfo' request.user.username %}">{{ request.user.user.username }}</span>
+                            {% else %}
+                                <a class="ui mini avatar image" href="{% url 'myinfo' request.user.username %}">
+                                    <img src="{% static 'images/hou180.jpg' %}" alt="" />
+                                </a>
+                                <span href="{% url 'myinfo' request.user.username %}">{{ request.user.username }}</span>
+                            {% endif %}
+                        </h5>
+                    </div>
+                    <div class="item">
+                        <a href="{% url 'logout' %}" class="ui inverted circular button">Logout</a>
+                    </div>
+                {% else %}
+                    <div class="item">
+                        <a href="{% url 'login' %}" class="ui inverted circular button">Signup/Login</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="ui  raised container segments">
+            <div class="ui head basic segment" style="background-image: url({% static 'images/bg.png' %});">
+                <div class="ui circular image cover">
+                    {% if request.user.user.username %}
+                        <img src="/upload/{{ request.user.user.avatar }}" alt="" style="width: 100px;height: 100px;"/>
+                    {% else %}
+                        <img src="{% static 'images/hou180.jpg' %}" alt="" style="width: 100px;height: 100px;"/>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="ui bottom inverted  six item attached menu">
+                <div class="active item">
+                    个人资料
+                </div>
+                <a class="item" href="{% url 'mycollection' user.username %}">
+                    我赞过的
+                </a>
+                <a class="item" href="{% url 'changepwd' user.username %}">
+                    修改密码
+                </a>
+            </div>
+            <div class="ui butt segment">
+                <div class="ui basic very padded segment container info">
+                    <form enctype="multipart/form-data" class="ui form" method="post">
+                        {% for field in form %}
+                            <div class="field">
+                                <label>{{ field.label }}</label>
+                                {{ field }}
+                            </div>
+                        {% endfor %}
+                        {% csrf_token %}
+                        <button class="ui inverted red right floated button" type="submit" >修改资料</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

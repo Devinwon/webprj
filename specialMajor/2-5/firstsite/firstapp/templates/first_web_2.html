@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+{%  load staticfiles %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>first web</title>
+        <link rel="stylesheet" href="{% static 'css/semantic.css' %}"  media="screen" title="no title" charset="utf-8">
+        <link href="https://fonts.googleapis.com/css?family=Oswald|Raleway" rel="stylesheet">
+        <!--这个解决二级菜单选不中的问题,原因：距离太长，需要拉近-->
+        <link rel="stylesheet" href="{% static 'css/cannotlink.css' %}" media="screen" title="no title" charset="utf-8">
+
+        <style type="text/css">
+            h1 {
+                font-family:'Oswald', sans-serif!important;
+                font-size:40px;
+            }
+
+            body {
+                font-family: 'Raleway', sans-serif;
+            }
+            p {
+                font-family: 'Raleway', sans-serif;
+                font-size:18px;
+            }
+            .ui.vertical.segment.masthead {
+                height: 300px;
+                background-image: url({% static 'images/star_banner.jpg' %});
+                background-size: cover;
+                background-position: 100% 80%;
+            }
+
+            .ui.container.segment {
+                width: 800px;
+            }
+
+            .ui.center.aligned.header.blogslogon {
+                margin-top: 40px;
+            }
+
+            .ui.center.aligned.header.blogslogon p {
+                margin-top: 10px;
+                color: white;
+                font-size: 10px;
+            }
+            .ui.container.nav {
+                width: 500px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="ui inverted vertical  segment masthead">
+
+            <h1 class="ui center aligned header blogslogon" style="font-size:50px;font-family: 'Raleway', sans-serif!important;">
+                Bloger
+                <p class="ui sub header">
+                    everyone has a story to tell
+                </p>
+
+            </h1>
+        </div>
+        <div class="ui container nav">
+            <div class="ui borderless text three item menu ">
+                <div class="ui simple dropdown item">
+                    Categories
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <!--href会加在本页面后面即http://xx.xx.com/index/?tag=life，跳到查询页面-->
+                        <!--注意：如果写成：/?tag=life,就跳到父级了，http://xx.xx.com/?tag=life -->
+                        <a class="item" href="?tag=life">life</a>
+                        <a class="item" href="?tag=tech">tech</a>
+                    </div>
+                </div>
+                <a class="item">
+                    Popular
+                </a>
+                <a class="item">
+                    About
+                </a>
+
+            </div>
+        </div>
+
+        <div class="ui divider"></div>
+        <!-- Articles in total:{{article_list|length}}-->
+        <!-- 直接使用过滤就可以获取文章数目 -->
+        <div class="ui  vertical segment">
+
+            {% for article in article_list %}
+                <div class="ui container vertical segment">
+                    <a href="#">
+                        <h1 class="ui header">
+                            {{ article.title }}
+                        </h1>
+                    </a>
+                    <span>
+                        <i class="icon grey small unhide">{{ article.views }}</i>
+                        <i class="thumbs outline up icon">{{ article.likes }}</i>
+                    </span>
+                    <p>
+                        {# {{ article.content|truncatewords:30 }}#}
+                        {# 注意中英文的字数过滤器不是一样的#}
+                        {{ article.content|slice:'150' }}
+                        <a href="#">
+                            <i class="angle tiny double grey right icon">READMORE</i>
+                        </a>
+                    </p>
+
+                    <div class="ui mini  tag label">
+                        {{article.tag}}
+                    </div>
+                </div>
+            {% endfor %}
+
+
+        </div>
+
+        <div class="ui inverted  vertical very padded  segment">
+            Mugglecoding®
+        </div>
+    </body>
+</html>

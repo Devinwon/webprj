@@ -1,0 +1,71 @@
+body{
+
+	background: #2286c6;
+	margin:0px;
+	padding: 0px;
+	font-size: 12px;
+	font-family: Arial;
+}
+
+#container{
+	margin: 0px auto;
+	width: 780px;
+	height: 600px;
+	text-align: left;
+	background: #123456;
+}
+
+#banner{
+	margin: 0px;
+	padding: 0px;
+	background: #778899;
+	height: 150px;
+	width: 100%;
+}
+
+#gloablelink{
+	margin: 0px;
+	padding: 0px;
+	background: #556677;
+	height: 50px;
+	width: 100%;
+}
+
+#left{
+	width: 200px;
+	height: 370px;
+	background: red;
+	margin: 0px;
+	padding: 0px 0px 5px 0px;
+	color: #dbecff;
+	float: left;
+}
+
+#center{
+	width: 400px;
+	height: 370px;
+	background: blue;
+	margin: 0px 2px 0px 2px;
+	padding: 5px 0px 5px 0px;
+	color: #dbecff;
+	float: left;
+}
+
+#right{
+	width: 176px;
+	height: 370px;
+	background: pink;
+	margin: 0px ;
+	padding: 5px 0px 5px 0px;
+	float: left;
+}
+
+#footer{
+	width: 100%px;
+	height: 30px;
+	background: yellow;
+	margin:1px 0px ;
+	padding: 1px 0px;
+	color: #dbecff;
+	clear: both;
+}

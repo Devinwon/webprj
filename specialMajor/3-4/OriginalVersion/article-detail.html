@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script type="text/javascript" src="js/vue1.js"></script>
+        <link rel="stylesheet" href="css/semantic.css" media="screen" title="no title" charset="utf-8">
+        <link href="https://fonts.googleapis.com/css?family=Oswald|Raleway" rel="stylesheet">
+
+    </head>
+    <body id="app">
+        <style type="text/css">
+            .ui.segment.container {
+                width:700px;
+            }
+            h1 {
+                font-family:'Oswald', sans-serif;font-size:40px!important;
+            }
+
+            p {
+                font-family: 'Raleway', sans-serif;
+                /*px前不能有空格，否则都不晓得错误在哪里，悲哀*/
+                font-size:{{ article.fontSize }}px;
+            }
+
+            body {
+                background:url(images/star_banner.jpg);
+                background-size:cover;
+                background-repeat:no-repeat;
+                background-attachment:fixed
+            }
+
+        </style>
+
+        <div class="ui  segment padded container" >
+            <button v-on:click="article.fontSize+=1" type="button" class="ui top left attached label">
+                +
+            </button>
+            <h1 class="ui header">
+                {{ article.title }}{{article.fontSize}}
+
+            </h1>
+            <p>
+                {{ article.content }}
+            </p>
+        </div>
+
+        <!-- Comments&Form's here -->
+        <div class="ui segment container" style="width:700px;">
+            <h3 class="ui header" style="font-family:'Oswald', sans-serif;">Comments</h3>
+            <div v-for="comment in comments" class="ui comments">
+
+                <div class="comment" v-if="comment.show">
+                    <div class="avatar">
+                        <img src="images/matt.jpg" alt="" />
+                    </div>
+                    <div class="content">
+                        <a href="#" class="author">{{ comment.name }}</a>
+                        <p class="text" style="font-family: 'Raleway', sans-serif;">
+                            {{ comment.said }}
+                        </p>
+                        <div class="actions" v-on:click="comment.show=!comment.show">
+                            <a>span</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="comment" v-else>
+                    <h3 class="ui sub header">Opps</h3>
+                </div>
+            </div>
+            <div class="ui divider"></div>
+            <h3 class="ui header"> 你还可以输入 {{ 100 - message.length }} 字 </h3>
+
+            <form class="ui form" action="index.html" method="post">
+                <input v-model="message" type="text">
+            </form>
+        </div>
+
+        <script>
+            var vm = new Vue({
+                el:"#app",
+                // context
+                data:{
+                    // context["article"] = article
+                    article:{
+                        title:"This is a title",
+                        content:"Hi there!",
+                        fontSize:14,
+                    },
+
+                    comments:[
+                        {name:"John Doe",said:"Great!well done",show:true},
+                        {name:"John Doe",said:"Great!well done",show:true},
+                        {name:"John Doe",said:"Great!well done",show:true},
+                        {name:"John Doe",said:"Great!well done",show:true},
+                    ]
+                }
+            })
+        </script>
+
+    </body>
+</html>

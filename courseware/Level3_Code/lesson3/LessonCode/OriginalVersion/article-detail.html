@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script type="text/javascript" src="js/vue1.js"></script>
+        <link rel="stylesheet" href="css/semantic.css" media="screen" title="no title" charset="utf-8">
+        <link href="https://fonts.googleapis.com/css?family=Oswald|Raleway" rel="stylesheet">
+
+        <style type="text/css">
+            .ui.segment.container {
+                width:700px;
+            }
+            h1 {
+                font-family:'Oswald', sans-serif;font-size:40px!important;
+            }
+
+            p {
+                font-family: 'Raleway', sans-serif;
+                font-size:18px;
+            }
+
+            body {
+                background:url(images/star_banner.jpg);
+                background-size:cover;
+                background-repeat:no-repeat;
+                background-attachment:fixed
+            }
+
+        </style>
+    </head>
+    <body id ='app' >
+
+        <div class="ui  segment padded container" >
+            <h1 class="ui header">
+                {{ article.title }}
+
+            </h1>
+            <p>
+                {{ article.content }}
+            </p>
+        </div>
+
+        <!-- Comments&Form's here -->
+        <div class="ui segment container" style="width:700px;">
+            <h3 class="ui header" style="font-family:'Oswald', sans-serif;">Comments</h3>
+            <div  v-for="comment in comments " class="ui comments">
+
+                <div class="comment">
+                    <div class="avatar">
+                        <img src="images/matt.jpg" alt="" />
+                    </div>
+                    <div class="content">
+                        <a href="#" class="author">{{ comment.name }}</a>
+
+                        <p class="text" style="font-family: 'Raleway', sans-serif;">
+                            {{ comment.said }}
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="ui divider"></div>
+            <h3 class="ui header "> 还可以输入{{ 10-msg.length }}字 </h3>
+            <form class="ui form" action="index.html" method="post">
+                <input v-model="msg" type="text">
+            </form>
+        </div>
+        <script >
+        var vm =new  Vue({
+            
+            //管理区域
+            el :"#app", 
+
+            //context,注意逗号,对象
+            data:
+            {
+                article:
+                {
+                    title:"This is the title",
+                    content:"HI there ",
+                },
+
+            //list
+                comments:
+                [
+                    {name:"John",said:"Hello nice girl"},
+                    {name:"John",said:"Hello nice girl"},
+                    {name:"John",said:"Hello nice girl"},
+                    {name:"John",said:"Hello nice girl"},
+
+                ],
+            }
+        })
+
+        </script>
+
+    </body>
+</html>

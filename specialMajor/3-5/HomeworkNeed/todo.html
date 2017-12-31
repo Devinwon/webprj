@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>ToDo</title>
+        <link rel="stylesheet" href="css/semantic.css"  media="screen" title="no title" charset="utf-8">
+        <script type="text/javascript" src="js/vue1.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Oswald|Raleway" rel="stylesheet">
+        <style type="text/css">
+            body {
+            background-color: #FDFDFD;
+            }
+            .ui.very.padded.segment.container {
+            width: 500px;
+            position: relative;
+            transform: translate(0,-50%);
+            top:30%;
+            }
+            .remove.icon {
+            color: #EAEBEB;
+            }
+            .ui.very.padded.container {
+            width: 500px;
+            }
+        </style>
+    </head>
+    <body id="app">
+        <div class="ui very padded container">
+            <div class="ui text menu">
+                <div class="header item" style="font-size:20px;">
+                    <i class="checkmark box icon"></i>
+                    麻瓜 To Do
+                </div>
+            </div>
+            <div class="ui divider">
+        </div>
+
+
+        </div>
+        <div class="ui very padded segment container">
+            <div class="ui action fluid input">
+                                                                <!--v-model进行数据绑定-->
+                <input  type="text" placeholder="添加新任务" value="" v-model="newvalue">
+                <button class="ui icon basic button">
+                    <i v-on:click="toadd" class="plus icon" style="color:#666666"></i>
+                </button>
+
+            </div>
+
+            <div v-for=" item in itemarr" class="ui relaxed divided list">
+                <div v-if="item.show" class="item">
+                    <div class="right floated content">
+                        <a v-on:click="item.show=!item.show"><i class="remove grey icon"></i></a>
+                    </div>
+    
+                    <p v-on:click="item.line=!item.line" v-if="item.line" style="font-size:14px;"><a style="color:black" href="#">{{ item.item }}</a></p>   
+                    <p v-else style="font-size:14px;"><s>{{ item.item }}</s></p>   
+                </div>
+            </div>
+
+        </div>
+        <script>
+            var vm =new Vue
+            ({
+                el:"#app",
+                data:
+                {
+
+                    itemarr:
+                    [
+                       {item:"提交全栈课程的作业",show:true,line:true},                       
+                       {item:"分享学习笔记",show:true,line:true}, 
+                       {item:"修改Bug",show:true,line:true}, 
+                       {item:"整理明日计划",show:true,line:true},
+                    ],
+                },
+
+                methods:
+                {
+                    toadd:function()
+                    {
+                        // 函数里if else外不要用结尾符号，切记，按字段对应格式提交
+                        var value=this.newvalue
+                        if(value=="")
+                        {
+                            alert("内容为空")
+                        }
+                        else
+                        {
+                            this.itemarr.push({item:value,show:true,line:true})
+                            this.newvalue=""
+  
+                        }
+                    }
+                },
+
+            })
+            
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/reqwest/2.0.5/reqwest.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.3/js.cookie.js"></script>
+    </head>
+    
+    <body id="app" class="">
+        <div  class="ui inverted red borderless menu">
+            <div   class="header item">
+                <i class="icon tiny ellipsis vertical"></i>
+                10MINs
+            </div>
+            <div class="right menu">
+                <div class="item">
+                    <button  class="ui tiny inverted circular button" type="button" name="">
+                    {{ request.user.username }}</button>
+                </div>
+            </div>
+        </div>
+
+        <div v-show="modal.show" class="ui dimmer animated {{ fadeInOut }} active"   >
+            <div class="ui padded  modal {{ loadingOrNot }} segment active">
+                <h3 class="ui header">{{ showMsg }}</h3>
+                <i v-on:click="modalSwitch" class="icon tiny close" ></i>
+                <div class="content">
+                    <form >
+                        <div class="field">                          
+                            <input v-model="modal.username" type="text" placeholder="username">
+                        </div>
+                        <div class="field">
+                            <input v-model="modal.password" type="url" placeholder="password">
+                        </div>
+                        <div class="field">
+                            <input v-model="modal.email" type="text" placeholder="email">
+                        </div>
+                        <div>
+                            <div class="">normal</div>
+                            <div class="">author</div>
+                        </div>
+                    </form>
+                </div>
+                <div v-on:click="sendData" class="ui fluid positive  button" >Submit</div>
+            </div>
+        </div>
+
+        <!-- v-if="!opps" -->
+        <div class="ui container"  >
+            <div class="ui  header"><h5>Operation</h5></div> 
+            <div class="ui circular button" v-on:click="modalSwitch"><i class="plus icon"></i>NEW USER</div>
+            <div class="ui divider"></div>
+        </div>
+        <div class="ui container userlist"  >
+            <div class="ui  header"><h5> {{ numberofuser }} user(s) in the list</h5>
+            </div> 
+            {% for u in user %}
+                <div class="userlist">
+                    <div class="ui mini circular image">
+                        <img src="/upload/{{ u.profile.profile_image}}" alt="" />
+                    </div>  
+                     
+                    <div class="userinfo" >
+                        <a href="#" class="author" >{{ u.username}}</a>
+                        <div class="metadata" style="font-family: 'Raleway', sans-serif;">
+                            user certifacation
+                        </div>
+                        <a href=""><i class='ellipsis vertical icon'></i></a>
+                    </div>
+                </div> 
+            {% endfor %}          
+        </div>
+
+
+        <script>
+            vm = new Vue({
+                el:"#app",
+                data:
+                {
+                    modal:
+                    {
+                        show:false,
+                        isLoading:false,
+                        title:'',
+                        url:'',
+                        content:'',
+                        msg:'',
+                        username:'',
+                        password:'',
+                        email:'',
+                    },
+                    
+                    showMenu:false,
+                    chozen:'all',
+                    editorMode:false,
+                    vids:[],
+                },
+                methods:
+                {
+                    modalSwitch:function () 
+                    {
+                        this.modal.show = !this.modal.show
+                    },
+
+                    deleteCard:function (vid) {
+                        var self = this;
+                        var id = vid.id
+                        reqwest({
+                            url:'/api/article/' + id,
+                            type:'json',
+                            headers:Cookies.get('token')?{'Authorization':'Token ' +Cookies.get('token')}:{},
+                            method:'delete',
+                            success:function (resp) {
+                                console.log(resp);
+                                self.getData()
+                            },
+
+                        })
+                    },
+                    getData:function () {
+                        var self = this;
+                        reqwest({
+                            url:'/api/article/',
+                            type:'json',
+                            headers:Cookies.get('token')?{'Authorization':'Token ' +Cookies.get('token')}:{},
+                            success:function (resp) {
+                                console.log(resp)
+                                self.vids = resp
+                            },
+
+                        })
+                    },
+                    sendData:function () {
+                        var self = this;
+                        self.modal.isLoading = !self.modal.isLoading
+                        // 使 segment 变成加载状态
+                        reqwest({
+                            url:'/api/article/',
+                            method:'post',
+                            type:'json',
+                            data:{
+                                title:self.modal.title,
+                                url_image:self.modal.url,
+                                content:self.modal.content
+                            },
+                            success:function (resp) {
+                                console.log(resp);
+                                self.modal.isLoading = !self.modal.isLoading
+                                // 如果取回数据成功在把加载状态切换回来
+                                self.modal.msg = resp.status
+                                self.modalSwitch()
+                                // 关闭弹窗
+                                self.getData()
+                            },
+                            error:function (err) {
+                                console.log(err);
+                                self.modal.msg = err.status
+                                self.modal.isLoading = !self.modal.isLoading
+
+                            }
+
+                        })
+                    }
+                },
+                computed:{
+                    fadeInOut:function () {
+                        if (this.modal.show) {
+                            return ' fadeIn'
+                        } else {
+                            return ' fadeOut'
+                        }
+                    },
+
+                    loadingOrNot:function () {
+                        if (this.modal.isLoading) {
+                            return 'loading'
+                        } else {
+                            return ''
+                        }
+                    },
+                    showMsg:function () {
+                        if (this.modal.msg == '201') {
+                            return 'SUCCESS'
+                        } else if (this.modal.msg == '400') {
+                            return 'SOMETHING WRONG'
+                        } else {
+                            return 'Create a post'
+                        }
+                    }
+                },
+                transitions:{
+                    menu:{
+                        enterClass:'bounceInDown',
+                        leaveClass:'bounceOutUp'
+                    },
+
+                },
+
+                ready:function () {
+                    this.getData()
+                }
+            })
+        </script>
+    </body>
+</html>

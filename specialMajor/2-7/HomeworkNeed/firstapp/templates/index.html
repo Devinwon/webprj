@@ -1,0 +1,111 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'css/semantic.css' %}" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="{% static  'css/list_custom.css' %}" media="screen" title="no title" charset="utf-8">
+
+</head>
+
+<body>
+    <div class="ui inverted top fixed menu borderless red menu">
+        <div class="header item">
+            <div class="ui image">
+                <img src="{% static 'images/tenlogo.png' %}" alt="">
+            </div>
+        </div>
+
+        <div class="right menu">
+            <div class="item">
+                <h5 class="ui inverted header">
+                        <div class="ui avatar image">
+                            <img src="{% static 'images/default.png' %}" alt="">
+                        </div>
+
+                        <span>admin</span>
+
+                    </h5>
+            </div>
+            <div class="item">
+                <a href="#logout/" class="ui inverted circular button">Logout</a>
+            </div>
+        </div>
+    </div>
+    <div class="ui inverted segment container nav">
+        <div class="ui  three borderless  item  menu">
+            <a class="active item"> All </a>
+            <a class="item"> New </a>
+            <a class="item" href="#"> Editor's </a>
+        </div>
+    </div>
+
+
+    <div class="ui basic segment container content">
+
+        <div class="ui three column grid">
+            {% for vid in vids_list %}
+            <div class="column">
+                <a class="ui fluid card" href="#">
+                    <div class="image">
+                        <img src="{{ vid.url_image }}" alt="" style="height:200px;object-fit: cover;">
+                    </div>
+                </a>
+
+                <div class="title header" href="#">{{ vid.title }}</div>
+
+                <i class="icon grey unhide"></i>
+                <span style="color:#bbbbbb">{{ vid.views }}</span>
+
+                <span class="" style="color:rgb(226, 226, 226)">|</span>
+
+                <i class="icon grey checkmark"></i>
+                <span style="color:#bbbbbb"> {{ vid.likes }} people got it</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="ui center aligned  vertical segment container">
+        <div class="ui pagination menu">
+            {% if vids_list.has_previous %}
+              <a href="?page={{vids_list.previous_page_number }}" class="item">
+                <i class="icon red left arrow"></i>
+              </a>
+            {% else %}
+              <a href="?page={{vids_list.start_index }}" class="disabled item">
+                <i class="icon left arrow"></i>
+              </a>
+            {% endif %}
+            {# 中间新增的代码#}
+            {# num_pages就是总的页数，从1开始 #}
+
+            {% for i in page_lst %}
+                <div class="ui item" style="padding:0px;" >
+                    {# {% if {{ page_num }}=={{ i }} %}#}
+                    {% ifequal i  vids_list.number %}
+                      <a href="?page={{ i }}" class="active item" id='selected_page'>{{i}}</a>
+                    {% else %}
+                      <a href="?page={{i}}" class=" item" id='no_selected_page'>{{i}}</a>
+                    {% endifequal %}
+                </div>
+            {% endfor %}
+
+            {% if vids_list.has_next %}
+              <a href="?page={{ vids_list.next_page_number }}" class="item">
+                  <i class="icon red right arrow"></i>
+              </a>
+            {% else %}
+              <a href="?page={{ vids_list.end_index" class=" disabled item">
+                <i class="icon right arrow"></i>
+              </a>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>
