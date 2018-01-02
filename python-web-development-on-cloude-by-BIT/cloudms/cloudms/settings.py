@@ -53,6 +53,7 @@ ROOT_URLCONF = 'cloudms.urls'
 
 TEMPLATES = [
     {
+        # 模板引擎配置
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR,"msgapp/templates")],
         'APP_DIRS': True,

@@ -19,5 +19,6 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('msggate/',include('msgapp.urls')),
-    path('',include('msgapp.urls')),
+    path('playground/',include('msgapp.urls')),
+    # path('',include('msgapp.urls')),
 ]

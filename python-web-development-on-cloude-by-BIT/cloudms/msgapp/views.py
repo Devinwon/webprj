@@ -1,5 +1,10 @@
 from django.shortcuts import render
 from datetime import datetime
+from django.http import JsonResponse,HttpResponse,FileResponse
+import os
+
+from django.template import Template,Context
+
 
 # Create your views here.
 def msgproc(request):
@@ -9,6 +14,7 @@ def msgproc(request):
 		userB=request.POST.get("userB",None)
 		msg=request.POST.get("msg",None)
 		time=datetime.now()
+		# 'a+',没有就自动建立文件
 		with open("msgdata.txt",'a+') as f:
 			f.write("{}--{}--{}--{}--\n".format(userB,userA,msg,time.strftime("%Y-%m-%d %H:%M:%S")))
 
@@ -30,3 +36,22 @@ def msgproc(request):
 def  testindex(request):
 	if request.method=="GET":
 		return render(request,"testindex.html")
+
+
+def testjson(request):
+	response=JsonResponse({'key':'value1',})
+	return response
+
+# 提示保存文件
+def testfile(request):
+	cwd=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+	response=FileResponse(open(cwd+'/msgapp/templates/pic.png',"rb"))
+	response['Content-Type']='application/octet-stream'
+	response['Content-Disposition']='attachment;filename="pic.png"'
+	return response
+
+
+def testtemp(request):
+	template=Template("<h1>这个程序的名字是{{name }}</h1>")
+	context=Context({'name':'实验平台'})
+	return HttpResponse(template.render(context))
