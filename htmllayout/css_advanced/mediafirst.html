@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css高级-</title>
+	<style type="text/css" media="screen">
+		html{
+
+		font-family:sans-serif;
+		}
+
+		body{
+			margin:0px;
+
+		}
+		
+		.container{
+			width:100vw;
+			background: #eee;
+			
+		}
+
+		nav,section{
+			margin：2%;
+			height: 50vh;
+		}
+
+		nav{
+			background:lightblue;
+			width: 20%;
+
+		}
+
+		section{
+			background: lightcoral;
+			width: 72%;
+		}
+
+		@media (min-width: 600px){
+
+			nav{
+				float: left;
+			}
+
+			section{
+
+				width:auto;
+				float: left;
+			}			
+			
+			.container{
+				 overflow: hidden; 
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<nav>nav</nav>
+		<section>section</section>
+	</div>
+
+	
+</body>
+</html>

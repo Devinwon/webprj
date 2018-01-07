@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css高级-</title>
+	<style type="text/css" media="screen">
+		html{
+
+		font-family:sans-serif;
+		}
+
+		body{
+			margin:0px;
+
+		}
+		
+		.container{
+			width:100vw;
+			background: #eee;
+			overflow: hidden;
+		}
+
+		nav,section{
+			margin：2%;
+			height: 50vh;
+		}
+
+		nav{
+			background:lightblue;
+			float: left;
+			width: 20%;
+
+		}
+
+		section{
+			background: lightcoral;
+			float: left;
+			width: 72%;
+		}
+
+		@media (max-width: 600px){
+
+			nav,section{
+
+				width:auto;
+				float: none;
+			}		
+
+			nav{
+				height: 100px;
+			}	
+
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<nav>nav</nav>
+		<section>section</section>
+	</div>
+
+	
+</body>
+</html>

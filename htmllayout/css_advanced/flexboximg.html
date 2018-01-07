@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css高级-</title>
+	<style type="text/css" media="screen">
+		html{
+
+		font-family:sans-serif;
+		}
+
+		body{
+			margin:0px;
+
+		}
+		
+		.container{
+			width:100vw;
+			background: #eee;
+			overflow: hidden;
+		}
+
+		nav,section{
+			margin：2%;
+			height: 50vh;
+		}
+
+		nav{
+			background:lightblue;
+			float: left;
+			width: 20%;
+
+		}
+
+		section{
+			background: lightcoral;
+			float: left;
+			width: 72%;
+		}
+
+		img{
+			/*保证很小的话尺寸不超出容器，很大不失真，弹性图片*/
+			max-width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<nav>nav</nav>
+		<section>
+			<img src="http://www.ccnu.edu.cn/images/hd_logo.jpg" alt="">
+		</section>
+	</div>
+
+	
+</body>
+</html>
