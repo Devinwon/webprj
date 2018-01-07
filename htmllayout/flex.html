@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>flex</title>
+	<style type="text/css">
+		*{
+			margin:0px;
+			padding: 0px;
+		}
+
+		.container{
+			width:400px;
+			/*height: 460px;*/
+			margin:0 auto;
+			background-color: #eee;
+			/*默认垂直排列*/
+			
+			/*实现水平排列*/
+			display:flex;
+
+			/*居中*/
+			justify-content: center;
+
+			/*移动垂直，不修改html
+				column
+				column-reverse
+				row-reverse
+			*/
+			flex-direction: column;
+
+			/*换行，wrap,wrap-reserve*/
+			flex-wrap: wrap-reverse;
+
+			
+
+
+
+		}
+		.box{
+			height: 100px;
+			width:100px;
+			font-size: 50px;
+		}
+
+		.box1{ background-color: #bdc3cc; }
+		.box2{ background-color: #2eccaa; }
+		.box3{ background-color: #16a022;
+					
+					/*改变顺序,越小越靠前*/
+					/*order:-1;*/
+				 }
+		.box4{ background-color: #34ff66; }
+		.box5{ background-color: #f1c400; }
+		.box6{ background-color: #e67e22; }
+		.box7{ background-color: #474ccc; }
+		.box8{ background-color: #1abcff; }
+		.box9{ background-color: #3498dd; }
+		.box10{ background-color: #9b59bb; }
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box box1">1</div>
+		<div class="box box2">2</div>
+		<div class="box box3">3</div>
+		<div class="box box4">4</div>
+		<div class="box box5">5</div>
+		<div class="box box6">6</div>
+		<div class="box box7">7</div>
+		<div class="box box8">8</div>
+		<div class="box box9">9</div>
+		<div class="box box10">10</div>
+	</div>
+</body>
+</html>
