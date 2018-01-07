@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>浮动布局</title>
+	<style type="text/css">
+		body{
+			background-color: gray;
+			width:100%;
+			margin:0px;
+		}
+
+		#p1{
+			float: left;
+			width:150px;
+			height: 400px;
+			background-color: red;
+			margin-top: 0px;
+		}
+		
+		#p2{
+			background-color: blue;
+			height: 400px;
+			width:auto;
+			margin-top: 0px;
+			margin-left: 160px;
+			margin-right: 240px;
+
+		}
+
+		#p3{
+			float: right;
+			width:230px;
+			height: 400px;
+			margin-top: 0px;
+			background-color: green;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<p id="p1">p1</p>
+		<p id="p3">p3</p>
+		<p id="p2">p2</p>
+	</div>
+</body>
+</html>
+
+<!-- 实现中栏流氏布局，两端定宽
+		 学会使用盒模型进行调试
+		 学会使用尺寸，margin,等进行尺寸计算
+		 缺点：
+		 定高实际中很少，是根据内容进行确定的	
+ -->
