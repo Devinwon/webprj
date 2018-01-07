@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>absolute</title>
+	<style type="text/css">
+		li{
+			position: relative;
+			width:300px;
+			height: 50px;
+			line-height: 50px;
+			background-color: gray;
+			margin-bottom: 10px;
+			padding-left: 10px;
+		}
+
+		input[type="checkbox"]{
+			position: absolute;
+			top:20px;
+			right: 40px;
+		}
+	</style>
+</head>
+<body>
+	<h2>请勾选已读过的书</h2>
+	<ul>
+		<li>hello code <input type="checkbox" name=""/></li>
+		<li>master javascript in 21days <input type="checkbox" name=""/></li>
+		<li>js fullstack path <input type="checkbox" name=""/> </li>
+	</ul>
+</body>
+</html>
+
+<!-- 通过绝对定位对复选框进行排列
+ -->
