@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue" type="text/javascript"></script>
+
+</head>
+<body>
+	<div class="container" id="box"> 
+		<form role="form">
+			<div class="form-group">
+				<label for="username">用户名:</label>
+				<input v-model="username" type="text" id="username" class="form-control" placeholder="input your name">
+			</div>			
+
+			<div class="form-group">
+				<label for="age">年龄:</label>
+				<input v-model="age" type="text" id="age" class="form-control" placeholder="input your age">
+			</div>
+			<div class="form-group">
+				<input type="button" value="添加" class="btn btn-primary" v-on:click="add()">
+				<input type="reset" value="重置" class="btn btn-danger">
+			</div>
+		</form>
+		<hr>
+			<table class="table table-bordered table-hover">
+				<caption class="h3 text-info text-center">用户信息表</caption>
+				<tr class="text-danger">
+					<th class="text-center">序号</th>
+					<th class="text-center">名字</th>
+					<th class="text-center">年龄</th>
+					<th class="text-center">操作</th>
+				</tr>
+
+				<tr class="text-center" v-for="(value,key) in myData">
+					<td>{{key+1}}</td>
+					<td>{{value.username}}</td>
+					<td>{{value.age}}</td>
+					<td>
+						<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#layer" v-on:click="nowindex=key" >删除</button>
+					</td>
+				</tr>
+
+				<tr v-show="myData.length!=0">
+					<td colspan="4" class="text-right">
+						<button class="btn btn-danger btn=sm" v-on:click="nowindex=-99" data-toggle="modal" data-target="#layer">全部删除</button>
+					</td>  
+				</tr>
+
+				<tr v-show="myData.length==0">
+					<td colspan="4"><p class="text-center text-muted">暂无数据</p></td>
+				</tr>
+			</table>
+
+			<!--模态框-->
+			<div role="dialog" class="modal fade" id="layer" >
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								<span>&times;</span>
+							</button>
+							<h4 class="modal-title">确认删除吗？</h4>
+						</div>
+						<div class="modal-body text-right"> 
+							<button class="btn btn-primary btn-sm" data-dismiss="modal">取消</button>
+							<button class="btn btn-danger btn-sm" data-dismiss="modal" v-on:click="delMsg(nowindex)">确认</button>
+
+						</div> 
+					</div>
+					
+				</div>
+
+			</div>
+
+
+	</div>
+
+		<script>
+		window.onload=function(){
+				new Vue({
+					el:"#box",
+					data:{
+							myData:[],
+							username:'',
+							age:'',
+					},
+					methods:{
+						add:function()
+						{
+							this.myData.push({
+								username:this.username,
+								age:this.age,
+								nowindex:-100
+
+							});
+
+							this.username='';
+							this.age='';
+						},
+
+						delMsg:function(n){
+							if (n==-99)
+							{
+								this.myData=[];	
+							}
+							else{
+								this.myData.splice(n,1);
+							}
+						}
+					}
+				});
+
+		};
+	</script>
+</body>
+</html>
