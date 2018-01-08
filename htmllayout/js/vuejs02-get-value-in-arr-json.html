@@ -10,7 +10,10 @@
 				el:"#box1",			//选择器，绑定元素，tagname,id class,父类上
 				data:{
 							msg:"welcome vue",
-							msg2:2
+							msg2:2,
+							arr:['l','i','s','t'],
+							json:{'a':"apple",'b':"banana"},
+
 						}
 			});
 		};
@@ -24,6 +27,10 @@
 		<input type="text" v-model="msg">
 		<br>
 		{{msg2}}
+		<br>
+		{{arr}}	
+			<br>
+		{{json}}
 	</div>		
 </body>
 </html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vuejs-value in list and  json</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue" type="text/javascript"></script>
+	<script>
+		window.onload=function(){
+			new Vue({
+				el:"#box1",			//选择器，绑定元素，tagname,id class,父类上
+				data:{
+							msg:"welcome",
+							arr:['l','i','s','t'],
+							json:{'a':"apple",'b':"banana"},
+
+						}
+			});
+		};
+
+	</script>
+</head>
+<body>
+	<div id='box1'>
+
+		<input type="text" v-model="msg">
+		<ul>
+			<li v-for="(v ,inx)  in arr">{{v }}  {{inx}}</li>
+			<li>2</li>
+			<li v-for='(f,i) in json'>{{f}} {{i}}</li>
+		</ul>
+	</div>		
+</body>
+</html>
+<!-- 获取list arr json中的元素需要使用v-for指令
+但是好像不能使用切片
+ -->

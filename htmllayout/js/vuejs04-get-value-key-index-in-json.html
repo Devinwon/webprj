@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vuejs-key item index in json</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue" type="text/javascript"></script>
+	<script>
+		window.onload=function(){
+			new Vue({
+				el:"#box1",			//选择器，绑定元素，tagname,id class,父类上
+				data:{
+							msg:"welcome",
+							arr:['l','i','s','t'],
+							json:{'a':"apple",'b':"banana"},
+
+						}
+			});
+		};
+
+	</script>
+</head>
+<body>
+	<div id='box1'>
+
+		<input type="text" v-model="msg">
+		<ul>
+			<li v-for="(v ,inx)  in arr">{{v }}  {{inx}}</li>
+			<li>2</li>
+			<li v-for='(value,key,index) in json'>{{value}} {{key}} {{index}}</li>
+		</ul>
+	</div>		
+</body>
+</html>
+
+<!-- 
+<li v-for='(value,key,index) in json'>{{value}} {{key}} {{index}}</li>
+值按从左到右，只有一个变量就产生value...
+ -->
