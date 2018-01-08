@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vuejs-1</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue" type="text/javascript"></script>
+	<script>
+		window.onload=function(){
+			new Vue({
+				el:"#box1",			//选择器，绑定元素，tagname,id class,父类上
+				data:{
+							msg:"welcome vue"
+						}
+			});
+		};
+
+	</script>
+</head>
+<body>
+	<div id='box1'>
+
+		{{ msg }}
+		<input type="text" v-model="msg">
+		
+	</div>		
+</body>
+</html>
+<!-- 
+数据双向绑定
+改变V-model中的值其他会受到影响
+ -->
