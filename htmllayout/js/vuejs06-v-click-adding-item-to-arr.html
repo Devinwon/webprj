@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vuejs-key item index in json</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue" type="text/javascript"></script>
+	<script>
+		window.onload=function(){
+			new Vue({
+				el:"#box1",			//选择器，绑定元素，tagname,id class,父类上
+				data:{
+							msg:"welcome",
+							arr:['l','i','s','t'],
+							json:{'a':"apple",'b':"banana"},
+
+						},
+				methods:{
+					add:function(){
+						(this.arr.push("newitem"));
+					}
+
+				}
+			});
+		};
+
+	</script>
+</head>
+<body>
+	<div id='box1'>
+		
+		<input type="button" value="button" v-on:mouseover="add()"/>
+		<p>
+			<ul>
+				<li v-for="v in arr">{{v}}</li>
+			</ul>
+		</p>
+	</div>		
+</body>
+</html>
+
+<!-- 
+要求：点击按钮时向arr中追加元素
+
+this就是new Vue对象，它里面有arr msg等已定义的属性
+alert(this.arr.push("tomato"))
+模板数据会同步更新
+
+ -->
