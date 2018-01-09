@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>interactive-getdata</title>
+	<script src="../static/js/vue.js" type="text/javascript" ></script>
+	<script src="../static/js/vue-resource.js" type="text/javascript" ></script>
+	<script type="text/javascript">
+		window.onload=function(){
+			new Vue({
+					el:"#box",
+					data:{
+					},
+					methods:{
+						getdata:function(){
+							this.$http.jsonp('https://docs.teambition.com/all/doc',{
+							//word:a  可以有参数
+							},{
+									emulateJSON:true
+							}).then(function(res){
+								alert(res.data.info);
+							},function(res){
+								alert(res.status);
+							});
+						}
+					}
+			});
+		};
+	</script>
+</head>
+<body>
+	<div id="box">
+		<input type="button" @click="getdata()" value="button">
+	</div>
+
+</body>
+
+</html>
+
+<!-- jsonp需要就是一个api接口
+	res.data  返回数据
+	根据api格式查看属性，然后调用相应字段res.data.info
+
+
+ -->
+
