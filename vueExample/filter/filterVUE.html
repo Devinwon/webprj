@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>class-attribution</title>
+	<title>template</title>
 	<link rel="stylesheet" href="../static/css/bootstrap.min.css">
 	<script src="../static/js/jquery.min.js"></script>
 	<script src="../static/js/bootstrap.min.js"></script>
@@ -19,8 +19,15 @@
 </head>
 <body>
 	<div id="box">
-		<p :style="json">文字很长很长...</p>
+		{{'welcome'.toUpperCase()}}
+		<hr>
+		{{'WELCOME'.toLowerCase()}}
+		<hr>
+		{{'welcome'[0].toUpperCase() + 'welcome'.slice(1)}}
+		<hr>
+		{{'$' + 12.07823748.toFixed(4)}}
 	</div>
+
 
 </body>
 <script type="text/javascript">
@@ -28,15 +35,16 @@
 		new Vue({
 				el:"#box",
 				data:{
-					json:{
-						color:'red',
-						backgroundColor:"pink",
-					}
-						
+				msg:"info",	
+				vhtml:"<h1>i'm no 1</h1>"	
 				}
 		});
 	};
 </script>
 
 </html>
+<!-- 
+v-once只绑定一次，更多见vue官网
+
+ -->
 
