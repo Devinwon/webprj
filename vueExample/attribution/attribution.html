@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div id="box">
-		keyborad-event:<input type="text" @keyup.up="show2()">
+		<img :src="url" alt="" :width="w">
 	</div>
 
 </body>
@@ -18,7 +18,10 @@
 	window.onload=function(){
 		new Vue({
 				el:"#box",
-				data:{},
+				data:{
+					url:"https://www.baidu.com/img/bd_logo1.png",
+					w:"200px",
+				},
 				methods:{
 					show1:function(){
 						alert("father");
@@ -36,7 +39,3 @@
 
 </html>
 
-<!--
-
- key detected
- -->
