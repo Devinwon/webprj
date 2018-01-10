@@ -1,0 +1,15 @@
+
+<h2/>Teacher Registration</h2>
+<div class="container" style="padding-top:2%">
+    <form method="post" action="./teacher">
+    	{% csrf_token %}
+    	</br>
+        <table border="0">
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Register" />
+    </form>
+</div>
+<a href="/">Login</a>
+</br>
+</br>

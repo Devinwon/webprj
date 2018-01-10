@@ -18,6 +18,17 @@ def msgproc(request):
 		with open("msgdata.txt",'a+') as f:
 			f.write("{}--{}--{}--{}--\n".format(userB,userA,msg,time.strftime("%Y-%m-%d %H:%M:%S")))
 
+
+	if request.method=="GET":
+		
+		with open("msgdata.txt","r") as f:
+			for line in f:
+				linedata=line.split('--')
+				d={"userA":linedata[1],"msg":linedata[2],"time":linedata[3]}
+				datalist.append(d)
+	return render(request,"MsgSingleWeb.html",{"data":datalist})
+
+'''
 	if request.method=="GET":
 		userC=request.GET.get("userC",None)
 		if userC!=None:
@@ -32,6 +43,7 @@ def msgproc(request):
 					if cnt>=10:
 						break
 	return render(request,"MsgSingleWeb.html",{"data":datalist})
+'''
 
 def  testindex(request):
 	if request.method=="GET":

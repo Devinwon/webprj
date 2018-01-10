@@ -1,0 +1,21 @@
+{% load bootstrap3 %}
+{% load static %}
+<div class="container" style="padding-top:2%" >
+ </br>
+ </br>
+ 
+ <h1>Log-in</h1>  
+ <p>Please, use the following form to log-in test :</p>  
+ <form action="/login/" method="post" class="form">
+    {% bootstrap_form form %}
+ 	{% csrf_token %}    
+ 	{% buttons %}   
+ 	<button type="submit" class="btn btn-primary">  
+ 		 {% bootstrap_icon "star" %} Log-in
+    </button>
+ 	{% endbuttons %} 
+ </form> 
+</br>
+<p><a href="{% url "password_reset" %}">Forgotten your
+password?</a></p>
+</div>

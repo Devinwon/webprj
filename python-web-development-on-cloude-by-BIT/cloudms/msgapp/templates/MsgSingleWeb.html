@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>云端留言板首页（1）</title>
+	<title>云端留言板</title>
 </head>
 <body>
-	<h1>提交留言功能区</h1>
+	<h1>我要留言</h1>
 	<form action="/msggate/" method="post" >
 		{% csrf_token %}
 		发送方	<input type="text" name="userA">	<br>
@@ -13,14 +13,15 @@
 		消息文 	<input type="text" name="msg">	<br>
 						<input type="submit" value="留言提交">
 	</form>
-	<h1>获取留言功能区</h1>
+	<h1>查询留言</h1>
 	<form action="/msggate" method="get">
 			接收方	<input type="text" name="userC">	<br>
-							<input type="submit" value="留言获取">
+							<input type="submit" value="获取留言">
 	</form>
 	
 	{%	if data %}
 	<table border="1">
+		<caption>留言内容</caption>
 		<thead>
 			<th>留言来源</th>
 			<th>留言信息</th>

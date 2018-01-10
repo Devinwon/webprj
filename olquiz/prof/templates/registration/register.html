@@ -1,0 +1,12 @@
+
+{% block title %}Student Registration{% endblock %}
+<div class="container" style="padding-top:4%">
+    <form method="post" action="./student" >
+    	{% csrf_token %}
+        <table border="0">
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Register" />
+    </form>
+ </div>   
+    <a href="/">Login</a>
