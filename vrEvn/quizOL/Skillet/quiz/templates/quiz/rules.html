@@ -18,8 +18,8 @@
 </p>	
 
 <form action="{% url 'quiz:rule' %}" method="POST">
-{% csrf_token %}
-<input type="submit" value="take test" >
+	{% csrf_token %}
+	<input type="submit" value="take test" >
 </form>
 
 </body>

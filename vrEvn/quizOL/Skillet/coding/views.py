@@ -142,7 +142,7 @@ def submission(request,pk,question):
 		failed_testcase = str(user_submission.failed_testcase)
 		failed_testcase = failed_testcase.strip("[']")
 		failed_testcase = failed_testcase.split(',')
-		print failed_testcase
+		print(failed_testcase)
 		dic = {
 		'ith_test_case_failed' : user_submission.ith_test_case_failed,
 		'wrong_testcase' : failed_testcase,
