@@ -1,0 +1,21 @@
+body{
+	width:100%;
+
+}
+
+.ui.menu{
+	border: none;
+	box-shadow: none;
+	margin-bottom:0px; 
+}
+
+.ui.footer{
+	height: 60px;
+	text-align: center;
+}
+img{
+	width:100%;
+	height:600px;
+	margin-bottom:5px; 
+
+}
