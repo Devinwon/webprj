@@ -8,9 +8,18 @@
 		window.onload=function(){
 			new Vue({
 				el:"#box1",			//选择器，绑定元素，tagname,id class,父类上
+				methods:{
+					getYear:function(){
+						var date1 = new Date();
+						var year=date1.getFullYear();
+						return year
+					}	
+				},
 				data:{
-							msg:"welcome vue"
-						}
+							msg:"welcome vue",
+
+						},
+
 			});
 		};
 
@@ -19,7 +28,7 @@
 <body>
 	<div id='box1'>
 
-		{{ msg }}
+		{{ msg }}  {{msg}}
 		<input type="text" v-model="msg">
 		
 	</div>		

@@ -6,9 +6,7 @@ from django.template import Template,Context
 from login.forms import Regfm
 
 def index(request):
-	time=datetime.now()
-	year=time.strftime("%Y")
-	return render(request,"index.html",{"year":year})
+	return render(request,"index.html",{})
 
 def reg(request):
 	context={}

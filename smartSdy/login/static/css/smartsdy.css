@@ -13,7 +13,6 @@ a:active 	{color: #e21919}
 }	
 #nav div a:active 	{color: #e2f004} 
 #nav div {
-
 		position: relative;
 		left:50px; 
 }
@@ -49,6 +48,15 @@ a:active 	{color: #e21919}
 	max-width: 100%;
 	margin-bottom:0px;
 	background-size: cover; 
+}
+
+.bodyshow p[id="firstwd"] {
+	color:  #223cb973;
+	font:80px 'Roboto Slab', serif;
+	position: relative;
+	text-align: center;
+	top:20%;
+	/*justify-content: center;*/
 }
 
 #regfm{
