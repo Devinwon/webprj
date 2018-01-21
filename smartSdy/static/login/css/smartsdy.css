@@ -52,7 +52,7 @@ a:active 	{color: #e21919}
 
 .bodyshow p[id="firstwd"] {
 	color:  #223cb973;
-	font:80px 'Roboto Slab', serif;
+	font:80px serif,'Roboto Slab' ;
 	position: relative;
 	text-align: center;
 	top:20%;
