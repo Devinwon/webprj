@@ -13,28 +13,23 @@ def index(request):
 def reg(request):
 	context={}
 	if request.method=='GET':
-		regfm=Regfm()
+		regfm=Regfm()       #创建一个注册类对象，get方法就直接传给html
 		context['regfm']=regfm
 		return render(request,'register.html',context)
 	else:
-		return HttpResponse("数据库维护中，请稍候...紧急可与管理员联系")
-
-		
-'''
-		username=request.POST.get('username')
-		password_set=request.POST.get('password_set')
-		password_confirm=request.POST.get('password_confirm')
-		email=request.POST.get('email')
-		if password_set==password_confirm:
+		regfm=Regfm(request.POST)		#获取用户提交数据
+		#合法性判断,只是对定义规则做了检查，密码匹配，用户重复均没有检查
+		# namefilter = User.objects.filter(username=username,password=password)检查用户是否存在
+		if regfm.is_valid():
+			username=request.POST.get('username')
+			password_set=request.POST.get('password_set')
+			password_confirm=request.POST.get('password_confirm')
+			email=request.POST.get('email')
 			User.objects.create(
-			# Account.objects.create_user(
 				username=username,
 				password=password_set,
 				email=email,
 				)
-			
-			
-			
+			return HttpResponse("register success")
 		else:
-			return HttpResponse("Your password is not match")
-'''
+			return HttpResponse("register failed，contact with master ")
