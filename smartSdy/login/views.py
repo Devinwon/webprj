@@ -42,6 +42,5 @@ def reg(request):
 					context["err"]=err
 
 			return render(request,'register.html',context)
-			# return HttpResponse("invalid data，contact with master ")
 		except:
 			return render(request,'register.html',context)
