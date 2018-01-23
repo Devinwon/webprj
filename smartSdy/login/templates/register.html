@@ -12,11 +12,11 @@
 				{{ field.errors}}
 			</div>
 		{% endfor %}
-			<span id="regerr">
+			<p id="regerr">
 				{% if err %}
-				{{ err }}
+				<i class="warning circle icon red"></i>{{ err }}
 				{% endif %}
-			</span>
+			</p>
  		<input type="submit" value="注册" class="ui green button">
  		<input type="reset" value="重置" class="ui gray button">
  	</form>

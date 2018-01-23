@@ -18,7 +18,7 @@ def reg(request):
 		return render(request,'register.html',context)
 	else:
 		try:
-			regfm=Regfm(request.POST)		#获取用户提交数据
+			regfm=Regfm(request.POST)		
 			if regfm.is_valid():
 				password_set=request.POST.get('password_set')
 				password_confirm=request.POST.get('password_confirm')
