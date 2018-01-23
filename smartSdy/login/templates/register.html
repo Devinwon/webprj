@@ -11,9 +11,13 @@
 				{{ field.errors}}
 			</div>
 		{% endfor %}
+			<span>
+				{% if err %}
+				{{ err }}
+				{% endif %}
+			</span>
  		<input type="submit" value="注册" class="ui green button">
  		<input type="reset" value="重置" class="ui gray button">
  	</form>
 {% endblock  %}
 
-<!--white-space:nowrap-->

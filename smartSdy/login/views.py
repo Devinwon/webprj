@@ -17,19 +17,43 @@ def reg(request):
 		context['regfm']=regfm
 		return render(request,'register.html',context)
 	else:
-		regfm=Regfm(request.POST)		#获取用户提交数据
-		#合法性判断,只是对定义规则做了检查，密码匹配，用户重复均没有检查
-		# namefilter = User.objects.filter(username=username,password=password)检查用户是否存在
-		if regfm.is_valid():
-			username=request.POST.get('username')
-			password_set=request.POST.get('password_set')
-			password_confirm=request.POST.get('password_confirm')
-			email=request.POST.get('email')
-			User.objects.create(
-				username=username,
-				password=password_set,
-				email=email,
-				)
-			return HttpResponse("register success")
-		else:
+		try:
+			regfm=Regfm(request.POST)		#获取用户提交数据
+			# print("regfm",regfm)
+			#合法性判断,只是对定义规则做了检查，密码匹配，用户重复均没有检查
+			# namefilter = User.objects.filter(username=username,password=password)检查用户是否存在
+			if regfm.is_valid():
+				password_set=request.POST.get('password_set')
+				password_confirm=request.POST.get('password_confirm')
+				# print("is_valid,here")
+				
+				if password_set==password_confirm:
+					username=request.POST.get('username')
+					userResult = User.objects.filter(username__exact=username)
+					# print(userResult,'user')
+					if userResult:
+						err="用户名"+username+"已经存在"
+						context["err"]=err
+						print("err,",err)
+						# return HttpResponse("user exist，contact with master ")
+					else:
+						email=request.POST.get('email')
+						User.objects.create_user(
+							username=username,
+							password=password_set,
+							email=email,
+							)
+						return HttpResponse("register success，contact with master ")
+					
+				else:
+					err="两次密码不一致"
+					# print("run here...")
+					context["err"]=err
+			regfm=Regfm()
+			context["regfm"]=regfm
+			return render(request,'register.html',context)
+				
+			# return HttpResponse("invalid data，contact with master ")
+			# return HttpResponse("register failed，contact with master ")
+		except:
 			return HttpResponse("register failed，contact with master ")
