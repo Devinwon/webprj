@@ -44,3 +44,9 @@ def reg(request):
 			return render(request,'register.html',context)
 		except:
 			return render(request,'register.html',context)
+
+
+def test(request):
+	context={}
+	if request.method=="GET":
+		return render(request,"test.html",context)

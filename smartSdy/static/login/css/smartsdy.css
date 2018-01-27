@@ -122,9 +122,19 @@ a:active 	{color: #e21919}
 	position: relative;
 	/*flex-wrap: wrap;*/
 	width: auto;
-	height:auto;
+	/*height:55px;*/
 	top:60px;
+
 }
+
+#regfm label {
+	/*color: red;*/
+	transform: translate(0%,0%);
+	position: relative;
+	top:15px;
+
+}
+
 
 #regfm div[id="regfield"] input{
 	width: 330px;

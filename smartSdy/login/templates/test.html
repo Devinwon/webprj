@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block bodyshow %}
+<form class="ui form">
+  <div class="field">
+    <label>Special Field</label>
+    <input type="text" name="special-name">
+  </div>
+  <div class="ui error message"></div>
+  <div class="ui primary submit button">Submit</div>
+  
+</form>
+
+{% endblock %}
+
+<script type="text/javascript">
+	$('.ui.form')
+  .form({
+    fields: {
+      name: {
+        identifier : 'special-name',
+        rules: [
+          {
+            type   : 'empty',
+            prompt :"不能为空"
+          }
+        ]
+      }
+    }
+  })
+;
+</script>

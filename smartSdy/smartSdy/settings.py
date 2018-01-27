@@ -79,10 +79,12 @@ DATABASES = {
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'smartsdy',
-        'HOST': '120.78.144.243',
+        # 'HOST': '120.78.144.243',
+        'HOST': '127.0.0.1',
         'PORT': 3306,
         'USER': 'root',
-        'PASSWORD': 'admdevin',
+        # 'PASSWORD': 'admdevin',
+        'PASSWORD': 'root',
     }
 }
 
