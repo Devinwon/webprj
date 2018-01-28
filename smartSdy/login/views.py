@@ -49,4 +49,4 @@ def reg(request):
 def test(request):
 	context={}
 	if request.method=="GET":
-		return render(request,"test3.html",context)
+		return render(request,"test-tab.html",context)
