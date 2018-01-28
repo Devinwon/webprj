@@ -68,7 +68,7 @@ a:active 	{color: #e21919}
 }
 
 #regfm{
-	/*border:solid 1px;*/
+	border:solid 1px;
 	width: 38%;
 	max-width: 38%;
 	height:70%;

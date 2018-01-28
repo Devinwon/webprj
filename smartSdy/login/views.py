@@ -15,7 +15,7 @@ def reg(request):
 	regfm=Regfm()       
 	context['regfm']=regfm
 	if request.method=='GET':
-		return render(request,'register.html',context)
+		return render(request,'reg_login.html',context)
 	else:
 		try:
 			regfm=Regfm(request.POST)		
@@ -41,9 +41,9 @@ def reg(request):
 					err="两次密码不一致"
 					context["err"]=err
 
-			return render(request,'register.html',context)
+			return render(request,'reg_login.html',context)
 		except:
-			return render(request,'register.html',context)
+			return render(request,'reg_login.html',context)
 
 
 def test(request):
