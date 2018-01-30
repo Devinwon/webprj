@@ -59,16 +59,42 @@ a:active 	{color: #e21919}
 	/*justify-content: center;*/
 }
 
+#reg_log{
+	width: 100%;
+	height: 100%;
+	background-color: #4881c6;
+	/*border:solid 1px;*/
+
+}
+.ui.top.attached.tabular.menu{
+	background-color: #4881c6;
+	font:30px serif;
+	justify-content: center;
+	margin-bottom: 0px;
+	
+
+}
+.ui.top.attached.tabular.menu .item{
+	color: green;
+}
+.ui.bottom.attached.tab.segment{
+	width: 100%;
+	height: 65%;
+	/*margin:0px; */
+	padding: 0px;
+}
 .ui.form{
 	width: 100%;
 	height: 100%;
 	background-color: #4881c6;
 	position: relative;
+	border: solid 1px;
 	/*margin-top: -50px;*/
+	/*margin-top:-3px;*/
 }
 
 #regfm{
-	border:solid 1px;
+	/*border:solid 1px;*/
 	width: 38%;
 	max-width: 38%;
 	height:70%;
