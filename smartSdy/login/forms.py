@@ -28,3 +28,16 @@ class Regfm(forms.Form):
       label="输入邮箱",
       required=False,
       )
+
+class Logfm(forms.Form):
+    username = forms.CharField(
+    widget=forms.TextInput(attrs={"placeholder": "输入用户名", }),
+    error_messages={"required": "用户名不能为空",},
+    label="输入用户")
+
+    password_set = forms.CharField(
+    widget=forms.PasswordInput(attrs={"placeholder": "输入密码",}),
+    error_messages={"required": "密码不能为空",},
+    label="输入密码")
+
+

@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from datetime import datetime
 from django.http import JsonResponse,HttpResponse,FileResponse
 from django.template import Template,Context
-from login.forms import Regfm
+from login.forms import Regfm,Logfm
 
 
 def index(request):
@@ -44,6 +44,31 @@ def reg(request):
 			return render(request,'reg_login.html',context)
 		except:
 			return render(request,'reg_login.html',context)
+
+def login(request):
+	context={}
+	logfm=Logfm()
+	context["logfm"]=logfm
+	if request.method=="GET":
+		return render(request,"reg_login.html",context)
+	else:
+		try:
+			logfm=Logfm(request.POST)
+			if logfm.is_valid():
+				username=request.POST.get["username"]
+				password_set=request.POST.get["password_set"]
+				usernameResult = User.objects.filter(username__exact=username)
+				userResult = User.objects.filter(username__exact=username,password__exact=password_set)
+				if usernameResult:
+					#用户名存在，没检查密码
+				else:
+					err="用户名"+username+"不存在"
+					context["err"]=err
+			return render(request,'reg_login.html',context)
+		except:
+			return render(request,'reg_login.html',context)
+
+
 
 
 def test(request):
