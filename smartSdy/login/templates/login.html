@@ -1,10 +1,58 @@
-{% extends 'base.html'%}
-{% load staticfiles %}
-{% block title%} {% endblock  %}
+{% extends 'base.html' %}
+{% block title %}注册|登录——新未来{% endblock %}
 
-{% block menu %} {% endblock  %}
+{% block bodyshow %}
+<div class="" id="reg_log"  >
+  <div class="ui top attached tabular menu">
+    <a href="/account/login" class="item active" >登录</a>
+    <a href="/account/reg" class="item" >注册</a>
+  </div>
+  <div class="ui bottom attached tab segment active" >
+    <div class="ui form">
+      <form action="/account/login/" method="POST" class="" id="regfm" >
+        
+        {% csrf_token %}
+        {% for field in logfm %}
+          <div  id="regfield" class="">
+            {{ field.label_tag }}{{ field }} 
+            {{ field.errors}}
+          </div>
+        {% endfor %}
+          <p id="regerr">
+            {% if err %}
+            <i class="warning circle icon red"></i>{{ err }}
+            {% endif %}
+          </p>
+        <input type="submit" value="登录" class="ui green button">
+        <input type="reset" value="重置" class="ui gray button">
+      </form>
+    </div>
+  </div>
+</div>
 
-{% block studyshow %} {% endblock  %}
+<script  type="text/javascript">
+ $(function (){
+      $('.ui.top.attached.tabular.menu .item').tab();
+  })
+</script>
 
-{% block footer %}  {% endblock %}
+{% endblock  %}
+
+<!-- // <script type="text/javascript">
+//   $('#regfm')
+//   .form({
+//     fields: {
+//       name: {
+//         identifier : 'username',
+//         rules: [
+//           {
+//             type   : 'empty',
+//             prompt :"不能为空"
+//           }
+//         ]
+//       }
+//     }
+//   })
+// ;
+// </script> -->
 

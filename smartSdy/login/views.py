@@ -1,8 +1,9 @@
 # Create your views here.
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
+from django.contrib import auth
 from datetime import datetime
-from django.http import JsonResponse,HttpResponse,FileResponse
+from django.http import JsonResponse,HttpResponse,FileResponse,HttpResponseRedirect
 from django.template import Template,Context
 from login.forms import Regfm,Logfm
 
@@ -15,7 +16,7 @@ def reg(request):
 	regfm=Regfm()       
 	context['regfm']=regfm
 	if request.method=='GET':
-		return render(request,'reg_login.html',context)
+		return render(request,'reg.html',context)
 	else:
 		try:
 			regfm=Regfm(request.POST)		
@@ -41,34 +42,45 @@ def reg(request):
 					err="两次密码不一致"
 					context["err"]=err
 
-			return render(request,'reg_login.html',context)
+			return render(request,'reg.html',context)
 		except:
-			return render(request,'reg_login.html',context)
+			return render(request,'reg.html',context)
 
 def login(request):
 	context={}
 	logfm=Logfm()
 	context["logfm"]=logfm
 	if request.method=="GET":
-		return render(request,"reg_login.html",context)
+		return render(request,"login.html",context)
 	else:
 		try:
 			logfm=Logfm(request.POST)
 			if logfm.is_valid():
-				username=request.POST.get["username"]
-				password_set=request.POST.get["password_set"]
+				username=request.POST.get("username")
+				password_set=request.POST.get("password_set")
 				usernameResult = User.objects.filter(username__exact=username)
-				userResult = User.objects.filter(username__exact=username,password__exact=password_set)
+				#user = authenticate(username=username, password=password)
 				if usernameResult:
-					#用户名存在，没检查密码
+					# userResult = User.objects.filter(username__exact=username,password__exact=password_set)
+					userResult = auth.authenticate(username=username, password=password_set)
+					# print("=======userResult",userResult)
+					if userResult and userResult.is_active:
+						response=redirect(to='/reg')
+						response.set_cookie("username",username,max_age=3600)
+						return response
+						# return HttpResponseRedirect("/reg")
+					else:
+						err="用户名与密码不匹配"
+						context["err"]=err
+						return render(request,"login.html",context)
 				else:
 					err="用户名"+username+"不存在"
 					context["err"]=err
-			return render(request,'reg_login.html',context)
+			return render(request,'login.html',context)
 		except:
-			return render(request,'reg_login.html',context)
-
-
+			return HttpResponse("login error，contact with master ")
+			# redirect(to='post')
+			# return render(request,'login.html',context)
 
 
 def test(request):
