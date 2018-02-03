@@ -5,7 +5,7 @@ from django.contrib import auth
 from datetime import datetime
 from django.http import JsonResponse,HttpResponse,FileResponse,HttpResponseRedirect
 from django.template import Template,Context
-from login.forms import Regfm,Logfm
+from login.forms import Regfm,Logfm,Getpwdfm
 
 
 def index(request):
@@ -44,7 +44,6 @@ def reg(request):
 				else:
 					err="两次密码不一致"
 					context["err"]=err
-
 			return render(request,'reg.html',context)
 		except:
 			return render(request,'reg.html',context)
@@ -91,23 +90,45 @@ def login(request):
 
 def logout(request):
 		context={}
-		#cookie的设置
 		try:
 			response=redirect(to='/account/login')
-		# # response=HttpResponse('logout')
 			response.delete_cookie('username')
-		# # 注意返回response,不能是其他，否则cookie没有被删
 			return response
 		except:
 			return render(request,'index.html',context)
-		#session的设置
+
+def getpwd(request):
+	context={}
+	getpwdfm=Getpwdfm()
+	context["getpwdfm"]=getpwdfm
+	if request.method=="GET":
+		return render(request,'getpwd.html',context)
 		'''
 		try:
-			del request.session['username']
 		except:
-			pass
 		'''
-		# return redirect(to='login')
+	else:
+		getpwdfm=Getpwdfm(request.POST)
+		if getpwdfm.is_valid():
+			username=request.POST.get("username")
+			usernameResult = User.objects.filter(username__exact=username)
+			if usernameResult:
+				set_pwd=request.POST.get("set_pwd")
+				confirm_pwd=request.POST.get("confirm_pwd")
+				if set_pwd==confirm_pwd:
+					nowuser=User.objects.get(username=username)
+					nowuser.set_password(set_pwd)
+					nowuser.save()
+					return HttpResponse("重置密码成功，赶紧去登录吧")
+				else:
+					err="两次密码不一致"
+					context["err"]=err
+					return render(request,"getpwd.html",context)
+			else:
+				err="无法为用户"+username+"重置密码"
+				context["err"]=err
+				return render(request,"getpwd.html",context)
+		return render(request,"getpwd.html",context)
 
 
 

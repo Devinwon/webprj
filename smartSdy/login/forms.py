@@ -40,4 +40,23 @@ class Logfm(forms.Form):
     error_messages={"required": "密码不能为空",},
     label="输入密码")
 
+class Getpwdfm(forms.Form):
+    username = forms.CharField(
+    widget=forms.TextInput(attrs={"placeholder": "你的用户名", }),
+    error_messages={"required": "用户名不能为空",},
+    label="你的用户名")
+
+    set_pwd = forms.CharField(
+    widget=forms.PasswordInput(attrs={"placeholder": "输入新密码", }),
+    error_messages={"required": "新密码不能为空",},
+    max_length=20,
+    min_length=6,
+    label="输入新密码")
+
+    confirm_pwd = forms.CharField(
+    widget=forms.PasswordInput(attrs={"placeholder": "确认新密码",}),
+    error_messages={"required": "新密码不能为空",},
+    max_length=20,
+    min_length=6,
+    label="确认新密码")
 
