@@ -169,6 +169,11 @@ a:active 	{color: #e21919}
 	height: 55px;
 }
 
+#regfm div[class="ui text"]{
+	position: relative;
+	left: 75%;
+	top: 20%
+}
 .ui.footer{
 	height: 55px;
 	width: 100%;
