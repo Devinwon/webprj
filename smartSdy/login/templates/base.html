@@ -21,7 +21,11 @@
 		<div class="ui menu" id="nav" >
 			<div class="item"> <a href="/">首页</a></div>
 			<div class="item"> <a href="#">参赛</a></div>
+			{% if username is None %}
 			<div class="item"> <a href="/account/login">登录|注册</a></div>
+			{% else %}
+			<div class="item"> <a href="/account/logout">退出</a></div>
+			{% endif %}
 		</div>
 	{% endblock %}
 

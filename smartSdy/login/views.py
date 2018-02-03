@@ -9,7 +9,10 @@ from login.forms import Regfm,Logfm
 
 
 def index(request):
-	return render(request,"index.html",{})
+	context={}
+	username=request.COOKIES.get("username",None)
+	context["username"]=username
+	return render(request,"index.html",context)
 
 def reg(request):
 	context={}
@@ -51,6 +54,9 @@ def login(request):
 	logfm=Logfm()
 	context["logfm"]=logfm
 	if request.method=="GET":
+		# request.COOKIES["username"]
+		username=request.COOKIES.get("username",None)
+		context["username"]=username
 		return render(request,"login.html",context)
 	else:
 		try:
@@ -65,8 +71,9 @@ def login(request):
 					userResult = auth.authenticate(username=username, password=password_set)
 					# print("=======userResult",userResult)
 					if userResult and userResult.is_active:
-						response=redirect(to='/reg')
+						response=redirect(to='/')
 						response.set_cookie("username",username,max_age=3600)
+						context["username"]=username
 						return response
 						# return HttpResponseRedirect("/reg")
 					else:
@@ -81,6 +88,27 @@ def login(request):
 			return HttpResponse("login error，contact with master ")
 			# redirect(to='post')
 			# return render(request,'login.html',context)
+
+def logout(request):
+		context={}
+		#cookie的设置
+		try:
+			response=redirect(to='/account/login')
+		# # response=HttpResponse('logout')
+			response.delete_cookie('username')
+		# # 注意返回response,不能是其他，否则cookie没有被删
+			return response
+		except:
+			return render(request,'index.html',context)
+		#session的设置
+		'''
+		try:
+			del request.session['username']
+		except:
+			pass
+		'''
+		# return redirect(to='login')
+
 
 
 def test(request):
