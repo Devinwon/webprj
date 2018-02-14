@@ -8,14 +8,18 @@ import requests
 import itchat
 import random
 
-KEY = 'd6a29b9bd7bd40bcaedbf26b5010a050'
+# Devin
+# KEY = 'd6a29b9bd7bd40bcaedbf26b5010a050'
+# userid='Devin'
 
+# devin
+KEY='ed9538da22024cf98776c4aeede166eb'
 def get_response(msg):
     apiUrl = 'http://www.tuling123.com/openapi/api'
     data = {
         'key'    : KEY,
         'info'   : msg,
-        'userid' : 'Devin_robot',
+        'userid' : 'devin',
         # 'userid' : 'wechat-robot',
     }
     try:
