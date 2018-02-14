@@ -2,6 +2,13 @@
 tuling123.com注册
 替换key
 运行.py，扫描登录
+
+windows下直接运行即可
+
+linux
+nohup python run.py &
+
+之后手动打开二维码扫描或者使用一些方式让二维码在命令行显示。
 '''
 
 import requests
@@ -37,5 +44,6 @@ def tuling_reply(msg):
     return reply or defaultReply
 
 # itchat.auto_login(enableCmdQR=True)
-itchat.auto_login(hotReload=True)
+itchat.auto_login(hotReload=True,enableCmdQR=2)
+# itchat.auto_login(enableCmdQR=1)
 itchat.run()
