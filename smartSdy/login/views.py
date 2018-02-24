@@ -12,14 +12,14 @@ def index(request):
 	context={}
 	username=request.COOKIES.get("username",None)
 	context["username"]=username
-	return render(request,"index.html",context)
+	return render(request,"login/index.html",context)
 
 def reg(request):
 	context={}
 	regfm=Regfm()       
 	context['regfm']=regfm
 	if request.method=='GET':
-		return render(request,'reg.html',context)
+		return render(request,'login/reg.html',context)
 	else:
 		try:
 			regfm=Regfm(request.POST)		
@@ -44,9 +44,9 @@ def reg(request):
 				else:
 					err="两次密码不一致"
 					context["err"]=err
-			return render(request,'reg.html',context)
+			return render(request,'login/reg.html',context)
 		except:
-			return render(request,'reg.html',context)
+			return render(request,'login/reg.html',context)
 
 def login(request):
 	context={}
@@ -56,7 +56,7 @@ def login(request):
 		# request.COOKIES["username"]
 		username=request.COOKIES.get("username",None)
 		context["username"]=username
-		return render(request,"login.html",context)
+		return render(request,"login/login.html",context)
 	else:
 		try:
 			logfm=Logfm(request.POST)
@@ -78,7 +78,7 @@ def login(request):
 					else:
 						err="用户名与密码不匹配"
 						context["err"]=err
-						return render(request,"login.html",context)
+						return render(request,"login/login.html",context)
 				else:
 					err="用户名"+username+"不存在"
 					context["err"]=err
@@ -95,14 +95,14 @@ def logout(request):
 			response.delete_cookie('username')
 			return response
 		except:
-			return render(request,'index.html',context)
+			return render(request,'login/index.html',context)
 
 def getpwd(request):
 	context={}
 	getpwdfm=Getpwdfm()
 	context["getpwdfm"]=getpwdfm
 	if request.method=="GET":
-		return render(request,'getpwd.html',context)
+		return render(request,'login/getpwd.html',context)
 		'''
 		try:
 		except:
@@ -123,16 +123,16 @@ def getpwd(request):
 				else:
 					err="两次密码不一致"
 					context["err"]=err
-					return render(request,"getpwd.html",context)
+					return render(request,"login/getpwd.html",context)
 			else:
 				err="无法为用户"+username+"重置密码"
 				context["err"]=err
-				return render(request,"getpwd.html",context)
-		return render(request,"getpwd.html",context)
+				return render(request,"login/getpwd.html",context)
+		return render(request,"login/getpwd.html",context)
 
 
 
 def test(request):
 	context={}
 	if request.method=="GET":
-		return render(request,"test-tab.html",context)
+		return render(request,"login/test-tab.html",context)

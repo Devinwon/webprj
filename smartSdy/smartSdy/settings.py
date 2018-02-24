@@ -54,7 +54,9 @@ ROOT_URLCONF = 'smartSdy.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'login/templates')],
+        'DIRS': [os.path.join(BASE_DIR,'login/templates'),os.path.join(BASE_DIR,'people/templates')],
+        # 'DIRS': [os.path.join(BASE_DIR,'people/templates')],
+        # 'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -133,4 +135,5 @@ STATIC_ROOT =  os.path.join(BASE_DIR,'static')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "login\static"),
+    os.path.join(BASE_DIR, "people\static"),
 ]

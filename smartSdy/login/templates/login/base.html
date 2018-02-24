@@ -21,6 +21,7 @@
 		<div class="ui menu" id="nav" >
 			<div class="item"> <a href="/">首页</a></div>
 			<div class="item"> <a href="#">参赛</a></div>
+			<div class="item"> <a href="/people/query">人员查询</a></div>
 			{% if username is None %}
 			<div class="item"> <a href="/account/login">登录|注册</a></div>
 			{% else %}
@@ -44,9 +45,8 @@
 		</div>
 	{% endblock %}
 
-
 	<!-- <link href='http://fonts.font.im/css?family=Roboto+Slab:700' rel='stylesheet' type='text/css'> -->
-	<script  src="{% static 'login/js/smartsdy.js' %}" type="text/javascript"></script>
+	<script src="{% static 'login/js/smartsdy.js' %}" type="text/javascript"></script>
 	<script src="{% static 'login/js/vue.min.js' %}" type="text/javascript"></script>
 </body>
 </html>
