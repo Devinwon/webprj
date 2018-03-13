@@ -54,7 +54,7 @@ ROOT_URLCONF = 'smartSdy.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'login/templates'),os.path.join(BASE_DIR,'people/templates')],
+        'DIRS': [os.path.join(BASE_DIR,'login/templates'),os.path.join(BASE_DIR,'quiz/templates'),os.path.join(BASE_DIR,'people/templates')],
         # 'DIRS': [os.path.join(BASE_DIR,'people/templates')],
         # 'DIRS': [],
         'APP_DIRS': True,
@@ -81,12 +81,12 @@ DATABASES = {
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'smartsdy',
-        # 'HOST': '120.78.144.243',
-        'HOST': '127.0.0.1',
+        'HOST': '120.78.144.243',
+        # 'HOST': '127.0.0.1',
         'PORT': 3306,
         'USER': 'root',
-        # 'PASSWORD': 'admdevin',
-        'PASSWORD': 'root',
+        'PASSWORD': 'admdevin',
+        # 'PASSWORD': 'root',
     }
 }
 

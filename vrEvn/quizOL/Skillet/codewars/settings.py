@@ -78,8 +78,19 @@ WSGI_APPLICATION = 'codewars.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'pr.sqlite3'),
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'pr.sqlite3'),
+
+        # =============local my sqldb
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME':    'skilletdb',
+        'HOST': '127.0.0.1',
+        'PORT': 3306,
+        'USER': 'root',
+        'PASSWORD': 'root',
+        # 'HOST': '120.78.144.243',
+        # 'PASSWORD': 'admdevin',
+
     }
 }
 
