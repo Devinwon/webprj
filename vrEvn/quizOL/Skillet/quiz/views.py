@@ -115,6 +115,7 @@ def s_pop(request):
     current_user = request.user
     qlist = Question.objects.all()
     for x in qlist:
+        # mcq:多项选择
         if x.type == 'mcq':
            MultiStatus.objects.get_or_create(User = current_user,question = x)
         elif x.type == 'fill':

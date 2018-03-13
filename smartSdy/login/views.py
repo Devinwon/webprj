@@ -70,6 +70,7 @@ def login(request):
 					userResult = auth.authenticate(username=username, password=password_set)
 					if userResult and userResult.is_active:
 						response=redirect(to='people:query')
+						# response=redirect(to='quiz:pop')
 						response.set_cookie("username",username,max_age=3600)
 						context["username"]=username
 						return response

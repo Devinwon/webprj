@@ -5,6 +5,7 @@ app_name = 'quiz'
 
 
 urlpatterns=[
+	path('pop/',views.s_pop,name='pop'),
 	path('rules/',views.rules,name='rules'),
 
 ]
