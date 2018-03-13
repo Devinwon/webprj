@@ -69,7 +69,7 @@ def login(request):
 					# userResult = User.objects.filter(username__exact=username,password__exact=password_set)
 					userResult = auth.authenticate(username=username, password=password_set)
 					if userResult and userResult.is_active:
-						response=redirect(to='/')
+						response=redirect(to='people:query')
 						response.set_cookie("username",username,max_age=3600)
 						context["username"]=username
 						return response
