@@ -18,7 +18,7 @@
 			<th>delete</th>
 		</thead>
 		<br>
-		<tbody v-for="s in stuinfo">
+		<tbody v-for="s in sinfo">
 			<tr>
 				<td>{{s.name}}</td>
 				<td>{{s.tel}}</td>
@@ -47,7 +47,7 @@
 				{
 					var self=this;
 					reqwest({
-						url:'http://localhost:8000/api/',
+						url:'/api/',
 						type:'json',
 						success:function(resp)
 						{
@@ -58,13 +58,10 @@
 				}
 			},
 
-			computed:{
-				stuinfo:function()
-				{
-					var self=this
-					return self.sinfo
-				}
-			},
+			ready:function() 
+        {
+          this.getdata()
+        }
 
 		})
 	</script>
